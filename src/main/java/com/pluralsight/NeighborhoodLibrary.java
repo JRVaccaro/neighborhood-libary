@@ -53,7 +53,7 @@ public class NeighborhoodLibrary {
             System.out.println("\nAvailable Books:");
             for (int i = 0; i < numOfBooks; i++) {
                 if(!books[i].isCheckedOut()) // checks if book is not checked out
-                System.out.println(books[i]);
+                System.out.println("ID: " + books[i].getId() + "\nISBN: " + books[i].getIsbn() + "\nTitle: " + books[i].getTitle() + "\n"); // shows book information
             }
         }
 // method that shows book that aren't available
