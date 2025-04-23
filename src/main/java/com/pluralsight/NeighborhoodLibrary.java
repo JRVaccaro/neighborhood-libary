@@ -9,11 +9,11 @@ public class NeighborhoodLibrary {
 
     public static void main(String[] args) {
         //array of book objects with their properties
-        books[0] = new Book(0, "345-123456", "The Ugly Duckling",false, "");
+        books[0] = new Book(0, "345-123456", "The Ugly Duckling", false, "");
         books[1] = new Book(1, "967-333999", "The Bad Seed", false, "");
         books[2] = new Book(2, "867-378031", "Where The Wild Things Are", false, "");
         books[3] = new Book(3, "999-111222", "Go, Dog. Go!", false, "");
-        books[4] = new Book(4,"203-597212", "The Napping House", false, "");
+        books[4] = new Book(4, "203-597212", "The Napping House", false, "");
         books[5] = new Book(5, "444-111555", "Stellaluna", false, "");
 
         Scanner scanner = new Scanner(System.in);
@@ -21,14 +21,48 @@ public class NeighborhoodLibrary {
 
         System.out.println("\n--------Store Home Screen--------");
 
-        
-        //display list of options that a user can choose from
-        System.out.println("1 - Show Available Books");
-        System.out.println("2 - Show Checked Out Books");
-        System.out.println("3 - Exit"); // lets user close out of application
-        System.out.print("Select Where You Want To Go");
+        while (true) {
+            //display list of options that a user can choose from
+            System.out.println("1 - Show Available Books");
+            System.out.println("2 - Show Checked Out Books");
+            System.out.println("3 - Exit"); // lets user close out of application
+            System.out.print("Select Where You Want To Go: ");
 
-        select = scanner.nextInt(); // clear new line
+            select = scanner.nextInt();
+            scanner.nextLine(); // clears newline
 
+            switch (select) {
+                case 1:
+                    showAvailableBooks();
+                    break;
+                case 2:
+                    showCheckedOutBooks();
+                    break;
+                case 3:
+                    System.out.println("Exiting From Store Home Screen!");
+                    return; // exits from program
+                default:
+                    System.out.println("Invalid Command, Please pick 1-3!");
+                    break;
+
+            }
+        }
     }
+    // method that shows books that are available
+        private static void showAvailableBooks() {
+            System.out.println("\nAvailable Books:");
+            for (int i = 0; i < numOfBooks; i++) {
+                if(!books[i].isCheckedOut()) // checks if book is not checked out
+                System.out.println(books[i]);
+            }
+        }
+// method that shows book that aren't available
+    private static void showCheckedOutBooks(){
+        System.out.println("\nChecked Out Books");
+        for (int i = 0; i < numOfBooks; i++) {
+            if (books[i].isCheckedOut()){ // checks if book is checked out
+                System.out.println(books[i]);
+            }
+}
+}
 }
