@@ -13,7 +13,7 @@ public class NeighborhoodLibrary {
         books[1] = new Book(2, "967-333999", "The Bad Seed", false, "");
         books[2] = new Book(3, "867-378031", "Where The Wild Things Are", false, "");
         books[3] = new Book(4, "999-111222", "Go, Dog. Go!", false, "");
-        books[4] = new Book(5, "203-597212", "The Napping House", false, "");
+        books[4] = new Book(5, "203-597212", "The Napping House", true, "Amy");
         books[5] = new Book(6, "444-111555", "Stellaluna", false, "");
 
         Scanner scanner = new Scanner(System.in);
@@ -67,7 +67,7 @@ public class NeighborhoodLibrary {
         for (int i = 0; i < numOfBooks; i++) {
             if (books[i].getId() == choice && !books[i].isCheckedOut()) {
                 System.out.println("Please Enter Your Name: ");
-                String name = scanner.nextLine();
+                String name = scanner.nextLine(); // allows user to enter name
                 books[i].checkOut(name);
                 System.out.println("Thank you, " + name + "! " + "You have checked out: " + books[i].getTitle() + ".");
                 found = true;
@@ -77,16 +77,55 @@ public class NeighborhoodLibrary {
         }
         if (!found) {
             System.out.println("Book is not available! Or invalid ID!");
+
         }
     }
 // method that shows book that aren't available
         private static void showCheckedOutBooks() {
+        Scanner scanner = new Scanner(System.in);
+        boolean isCheckedOut = false;
+
             System.out.println("\nChecked Out Books");
             for (int i = 0; i < numOfBooks; i++) {
-                if (books[i].isCheckedOut()) { // checks if book is checked out
-                    System.out.println(books[i]);
+                if (books[i].isCheckedOut()) {// checks if book is checked out
+                    isCheckedOut = true;
+                    System.out.println("ID: " +books[i].getId());
+                    System.out.println("ISBN: " + books[i].getIsbn());
+                    System.out.println("Title: " + books[i].getTitle());
+                    System.out.println(); //line break
                 }
             }
+            if(!isCheckedOut){
+                System.out.println("No books are checked out!");
+                System.out.println("Please press X to return to Store Home Page!");
+                scanner.nextLine();
+                return; //returns to Store Home Page
+            }
+            System.out.println("Please enter C to check in a book!");
+            String letter = scanner.nextLine().toUpperCase();
+
+            if(letter.equals("C")){
+                System.out.println("Please enter the ID of the book you'd like to check in: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
+
+                boolean isCheckedIn = false;
+                for (int i = 0; i < numOfBooks; i++){ // loop through array of books up to current amount
+                    if (books[i].getId() == id && books[i].isCheckedOut()){  // checking both conditions to see if true-
+                        isCheckedIn = true;
+                        System.out.println("Thank you! " + books[i].getTitle() + " has been checked in.");
+                        break;
+
+                    }
+
+                    }
+                if(!isCheckedIn){
+                    System.out.println("Sorry! That was invalid. Please press X to return to Store Home Page!");
+                    scanner.nextLine();
+                    return;
+                }
+            }
+
         }
     }
 
