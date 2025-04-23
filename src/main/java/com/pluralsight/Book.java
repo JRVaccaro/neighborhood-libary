@@ -11,6 +11,13 @@ public class Book {
     public int getId() {
         return id;
     }
+    public Book(int id, String isbn, String title, boolean isCheckedOut, String checkedOutTo) { //constructor for required properties
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.isCheckedOut = isCheckedOut;
+        this.checkedOutTo = checkedOutTo;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -48,13 +55,6 @@ public class Book {
         this.checkedOutTo = checkedOutTo;
     }
 
-    public Book(int id, String isbn, String title, boolean isCheckedOut, String checkedOutTo) { //constructor for required properties
-        this.id = id;
-        this.isbn = isbn;
-        this.title = title;
-        this.isCheckedOut = isCheckedOut;
-        this.checkedOutTo = checkedOutTo;
-    }
     public void checkOut(String name){ //method for book being checked out
         isCheckedOut = true;
         checkedOutTo = name;
