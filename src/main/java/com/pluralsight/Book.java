@@ -7,16 +7,16 @@ public class Book {
     private boolean isCheckedOut;
     private String checkedOutTo;
 
-    // getters and setters
-    public int getId() {
-        return id;
-    }
     public Book(int id, String isbn, String title, boolean isCheckedOut, String checkedOutTo) { //constructor for required properties
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.isCheckedOut = isCheckedOut;
         this.checkedOutTo = checkedOutTo;
+    }
+    // getters and setters
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
